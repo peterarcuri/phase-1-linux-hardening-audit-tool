@@ -1,0 +1,3 @@
+echo "alice:developers" >> users/users.txt
+echo "bob:devops" >> users/users.txt
+echo "charlie:security" >> users/users.txt

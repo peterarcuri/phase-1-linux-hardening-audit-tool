@@ -1,0 +1,71 @@
+{
+  "report_info": {
+    "tool_name": "Linux Hardening Audit Tool",
+    "version": "1.0.0",
+    "generated_at": "2026-05-20_14-30-00",
+    "hostname": "ubuntu-devsecops-vm"
+  },
+  "system_information": {
+    "operating_system": "Ubuntu 24.04 LTS",
+    "kernel_version": "6.8.0",
+    "current_user": "root"
+  },
+  "permission_audit": {
+    "world_writable_files": {
+      "count": 3,
+      "findings": [
+        "/tmp/insecure-script.sh",
+        "/var/www/html/test.txt",
+        "/opt/shared/public.log"
+      ]
+    },
+    "suid_binaries": {
+      "count": 4,
+      "findings": [
+        "/usr/bin/passwd",
+        "/usr/bin/sudo",
+        "/usr/bin/chsh",
+        "/usr/bin/mount"
+      ]
+    },
+    "sgid_binaries": {
+      "count": 2,
+      "findings": [
+        "/usr/bin/wall",
+        "/usr/bin/ssh-agent"
+      ]
+    }
+  },
+  "firewall_audit": {
+    "ufw_enabled": true,
+    "default_policy": "deny",
+    "open_ports": [
+      "22/tcp",
+      "80/tcp"
+    ]
+  },
+  "ssh_hardening": {
+    "permit_root_login": "no",
+    "password_authentication": "no",
+    "max_auth_tries": 3
+  },
+  "user_management": {
+    "managed_users": [
+      "alice",
+      "bob",
+      "charlie"
+    ],
+    "password_reset_enforced": true
+  },
+  "log_management": {
+    "log_rotation_enabled": true,
+    "retention_days": 7,
+    "compressed_archives": true
+  },
+  "summary": {
+    "total_findings": 5,
+    "critical_findings": 1,
+    "warnings": 2,
+    "passed_checks": 8
+  }
+}
