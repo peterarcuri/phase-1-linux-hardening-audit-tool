@@ -3,12 +3,19 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-source ../config/audit.conf
-source ./utils.sh
-source ./permission_audit.sh
-source ./user_management.sh
-source ./firewall_audit.sh
-source ./log_rotation.sh
+# Get the absolute path of the directory where this script lives (the 'src' folder)
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+
+# Source the configuration file
+source "$SCRIPT_DIR/../config/audit.conf"
+
+# Source the utility and audit modules from the same 'src' folder
+source "$SCRIPT_DIR/utils.sh"
+source "$SCRIPT_DIR/permission_audit.sh"
+source "$SCRIPT_DIR/user_management.sh"
+source "$SCRIPT_DIR/firewall_audit.sh"
+source "$SCRIPT_DIR/log_rotation.sh"
+
 
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 REPORT_FILE="$REPORT_DIR/audit-report-$TIMESTAMP.json"
