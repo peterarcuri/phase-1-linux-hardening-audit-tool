@@ -25,9 +25,9 @@ mkdir -p "$LOG_DIR"
 
 log_info "Starting Linux Hardening Audit..."
 
-WORLD_WRITABLE_COUNT=$(find / -type f -perm -0002 2>/dev/null | wc -l || true)
-SUID_COUNT=$(find / -perm -4000 2>/dev/null | wc -l || true)
-SGID_COUNT=$(find / -perm -2000 2>/dev/null | wc -l || true)
+WORLD_WRITABLE_COUNT=$(find /tmp /var/tmp /home -type f -perm -0002 2>/dev/null | wc -l || true)
+SUID_COUNT=$(find /usr/bin /usr/sbin /bin /sbin -perm -4000 2>/dev/null | wc -l || true)
+SGID_COUNT=$(find /usr/bin /usr/sbin /bin /sbin -perm -2000 2>/dev/null | wc -l || true)
 
 if command -v ufw >/dev/null 2>&1; then
     UFW_STATUS=$(sudo ufw status | head -n 1 | awk '{print $2}')
