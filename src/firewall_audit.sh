@@ -95,3 +95,8 @@ run_firewall_audit() {
     echo "======================================="
 }
 
+# Run only when this script is executed directly
+# Do not auto-run when sourced by audit.sh
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+    run_firewall_audit
+fi
